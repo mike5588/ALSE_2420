@@ -7,6 +7,7 @@ int main(){
   scanf("%i", &x);
   scanf("%i", &y);
   aux = x;
+  printf("Hola Mundo Alse 2024-2");
   x = y;
   y = aux;
   printf("%i, %i\n", x, y);
