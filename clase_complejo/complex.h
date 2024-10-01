@@ -8,7 +8,7 @@ class Complex{
 
 public:
   // Implemente la siguiente función y explique para qué sirve
-  Complex(double r =0. , double i = 0 );
+  Complex(double r = 0. , double i = 0. );
 
   double angle();
   double magnitude();
@@ -22,4 +22,10 @@ public:
   bool operator>( const Complex &a ); 
 
   friend ostream& operator<<(std::ostream& out, Complex a);
+
+  // Adicionaré las funciones get/set
+  void Re(const double &r);
+  void Im(const double &im);
+  double Re();
+  double Im();
 };
