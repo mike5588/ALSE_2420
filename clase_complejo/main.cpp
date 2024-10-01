@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(){
-  Complex a(34.8, -12.4), b, c(24.59, 24.59);
+  Complex a(34.8, -12.4), b(0., 0.), c(24.59, 24.59);
   //a.re = 34.8; a.im = -12.4;
   //b = conjugate(a);
   b = a.conjugate();

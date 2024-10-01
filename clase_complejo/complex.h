@@ -7,12 +7,12 @@ class Complex{
   double im;
 
 public:
-  // Implemente la siguiente función y explique para qué sirve
-  Complex(double r = 0. , double i = 0. );
+  Complex( );
+  Complex(double r , double i );
 
-  double angle();
-  double magnitude();
-  Complex conjugate();
+  double angle() const;
+  double magnitude() const;
+  Complex conjugate() const;
 
   Complex operator+( const Complex &a );
   Complex operator-( const Complex &a );

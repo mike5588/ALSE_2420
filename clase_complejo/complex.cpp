@@ -24,24 +24,28 @@ double Complex::Im()
   return im;
 }
 
+Complex::Complex()
+{
+  re = im = 0.;
+}
 
-Complex::Complex(double r =0. , double i = 0 )
+Complex::Complex(double r, double i)
 {
   re = r;
   im = i;
 }
 
-double Complex::angle()
+double Complex::angle() const
 {
   return atan2(im, re);
 }
 
-double Complex::magnitude()
+double Complex::magnitude() const
 {
   return sqrt(re*re + im*im);
 }
 
-Complex Complex::conjugate()
+Complex Complex::conjugate() const
 {
   Complex r;
   r.re = re;
@@ -72,12 +76,15 @@ Complex Complex::operator*( const Complex &a )
 
 bool Complex::operator==( const Complex &a )
 {
-  bool res;
-
+  bool res = false;
+  if ( magnitude() == a.magnitude())
+  {
+    res = true;
+  }
   return res;
 }
 
-bool Comnplex::operator<( const Complex &a )
+bool Complex::operator<( const Complex &a )
 {
   bool res;
 
