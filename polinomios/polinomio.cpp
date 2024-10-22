@@ -1,29 +1,42 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <sstream>
+#include "polinomio.h"
 
 using namespace std;
 
 
 Polinomio::Polinomio(char var) {
-    _orden = -1;
+    _grado = -1;
     _variable = var;
 }
 
 Polinomio::Polinomio(string pol) {
-    _orden = -1;
+    _grado = -1;
     _variable = 0;
     redefinir( pol );
 }
 
-  Polinomio operator+( const Polinomio &a );
-  Polinomio operator-( const Polinomio &a );
-  bool operator==( const Polinomio &a ); 
+  Polinomio Polinomio::operator+( const Polinomio &a ){
+    Polinomio c('X');
+    return c;
+  }
+  Polinomio Polinomio::operator-( const Polinomio &a ){
+    Polinomio c('X');
+    return c;
+  }
+  bool Polinomio::operator==( const Polinomio &a ){
+    return true;
+  } 
 
-ostream& operator<<(std::ostream& out, Polinomio a);
+ostream& operator<<(std::ostream& out, Polinomio a){
+    out << a.getString();
+    return out;
+}
 
 bool Polinomio::ordenar(){
-	
+	return true;
 }
   
 void Polinomio::nuevoTermino(float c, int p) {
@@ -87,7 +100,7 @@ bool Polinomio::redefinir(string pol) {
         //cout << "coeff: " << coeff << " y power: " << power << endl;
         // Adicionar el término encontrado
         nuevoTermino( coeff, power );
-        _orden = power > _orden ? power : _orden ;
+        _grado = power > _grado ? power : _grado ;
     }
     //cout << getString() << endl;
     return true;
@@ -102,12 +115,12 @@ string  Polinomio::getString(){
     stringstream stream;
     std::list<termino>::iterator it;
     for(it = _terminoL.begin(); it != _terminoL.end(); ++it){
-        if(it->second > 0) stream << "+";
-            stream << it->second ;
-        if(it->first > 0 ){
+        if(it->coef > 0) stream << "+";
+            stream << it->coef ;
+        if(it->exp > 0 ){
             stream << _variable;
-            if( it->first > 1 )
-                stream << "^" << it->first;
+            if( it->exp > 1 )
+                stream << "^" << it->exp;
         }
     }
     return stream.str();
