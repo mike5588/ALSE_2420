@@ -1,53 +1,40 @@
 #include <iostream>
-#include "complex.h"
+#include "Polinomio.h"
+#include <math.h>
 
-	
 using namespace std;
 
-int main(){
-  Complex a(34.8, -12.4), b(0., 0.), c(24.59, 24.59);
-  //a.re = 34.8; a.im = -12.4;
-  //b = conjugate(a);
-  b = a.conjugate();
-  //c.re = c.im = 24.59;
-  cout << c << endl;
+int main()
+{
+    cout << "Este programa sirve para validar" << endl
+         << "el funcionamiento de las listas" << endl;
 
-  Complex d =  c + b;
-  cout << d << endl;
-  d = c - a;
-  cout << d << endl;
 
-  cout << "Son iguales a y b?: " << ( a==b ) << endl;
-  cout << "son iguales b y d?: " << ( b==d ) << endl;
+    Polinomio a( "4X^4-2X^5+5X^6+4X^2-5X-3" );
+    Polinomio b( "3X-3" );
 
-// Ahora con arrglos
-  Complex obj[5];
-  obj[0].Re( 34. ); obj[0].Im( -4. );
-  obj[1].Re( 45. ); obj[1].Im( 45. );
-  obj[2].Re( 33.33 ); obj[2].Im( -45. );
-  obj[3].Re( 12. ); obj[3].Im( 25. );
-  obj[4].Re(-56.56 ); obj[4].Im( -56.56 );
+    cout << "El polinomio 1 es: " << a << endl;
+    cout << "El polinomio 2 es: " << b << endl;
 
-  Complex tmp1;
-  bool cambio;
 
-  // Qué hace este código?
-  do{
-    cambio = false;
-    for (int i =0; i < 4; ++i ){
-      if( obj[i] < obj[i+1] ){
-      }else{
-        tmp1 = obj[i];
-        obj[i].Re( obj[i+1].Re() );
-        obj[i].Im( obj[i+1].Im() );
-        obj[i+1] = tmp1 ;
-        cambio = true;
-      }
-    }
-  }while(cambio == true);
-  
-  for( int i = 0 ; i < 5; ++i )
-    cout << obj[i] << endl;
+//       a.ordenar();
+//       cout << "El polinomio 1 es: " << a << endl;
+//       b.ordenar();
+//       cout << "El polinomio 2 es: " << b << endl;
 
-  return 0;
+//    Polinomio c;
+
+//      c = a + b;
+//      cout << "La suma de los polinomios es: " << c << endl;
+
+//       c = a - b;
+//        cout << "La resta de los polinomios es: " << c << endl;
+
+////    c = a * b;
+////    cout << "La multiplicación de los polinomios es: " << c << endl;
+
+//    c = a / M_PI;
+//    cout << "La división del polinomio 1 por Pi es: " << c << endl;
+
+    return 0;
 }
