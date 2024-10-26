@@ -20,7 +20,10 @@ class Polinomio{
 public:
   Polinomio(char var );
   Polinomio(string str );
+  Polinomio(const Polinomio &c);
+  ~Polinomio();
 
+  Polinomio operator=( const Polinomio &a );
   Polinomio operator+( const Polinomio &a );
   Polinomio operator-( const Polinomio &a );
   bool operator==( const Polinomio &a ); 
