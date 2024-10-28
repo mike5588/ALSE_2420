@@ -43,10 +43,10 @@ Polinomio Polinomio::operator+( const Polinomio &a ){
     Polinomio c('X');
     list<termino>::const_iterator it;
     for(it = _terminoL.begin(); it != _terminoL.end(); ++it){
-        c.nuevoTermino( it->coef, it->exp );
+        c.nuevoTermino( it->second, it->first );
     }
     for(it = a._terminoL.begin(); it != a._terminoL.end(); ++it){
-        c.nuevoTermino( it->coef, it->exp );
+        c.nuevoTermino( it->second, it->first );
     }
     c.simplificar();
     return c;
@@ -59,10 +59,10 @@ Polinomio Polinomio::operator+( const Polinomio &a ){
     Polinomio c('X');
     list<termino>::const_iterator it;
     for(it = _terminoL.begin(); it != _terminoL.end(); ++it){
-        c.nuevoTermino( it->coef, it->exp );
+        c.nuevoTermino( it->second, it->first );
     }
     for(it = a._terminoL.begin(); it != a._terminoL.end(); ++it){
-        c.nuevoTermino( -(it->coef), it->exp );
+        c.nuevoTermino( -(it->second), it->first );
     }
     c.simplificar();
     return c;
@@ -83,6 +83,8 @@ bool Polinomio::borrar(){
 }
 
 bool Polinomio::ordenar(){
+    _terminoL.sort();
+    _terminoL.reverse();
 	return true;
 }
   
@@ -161,11 +163,11 @@ bool Polinomio::simplificar(){
         ++it2;
         while( it2 != _terminoL.end()  ){
             //cout << &(*it1) << " y " << &(*it2) << endl;
-            if( it1->exp == it2->exp && it1 != it2 ){
-                cout << "Sumando " << it1->coef << " y " << it2->coef << endl;
-                it1->coef += it2->coef;
+            if( it1->first == it2->first && it1 != it2 ){
+                cout << "Sumando " << it1->second << " y " << it2->second << endl;
+                it1->second += it2->second;
                 _terminoL.erase( it2 );
-                if(it1->coef == 0){
+                if(it1->second == 0){
                     _terminoL.erase( it1 );
                     it1 = _terminoL.begin();
                 }
@@ -182,12 +184,12 @@ string  Polinomio::getString(){
     stringstream stream;
     std::list<termino>::iterator it;
     for(it = _terminoL.begin(); it != _terminoL.end(); ++it){
-        if(it->coef > 0) stream << "+";
-            stream << it->coef ;
-        if(it->exp > 0 ){
+        if(it->second > 0) stream << "+";
+            stream << it->second ;
+        if(it->first > 0 ){
             stream << _variable;
-            if( it->exp > 1 )
-                stream << "^" << it->exp;
+            if( it->first > 1 )
+                stream << "^" << it->first;
         }
     }
     return stream.str();
