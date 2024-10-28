@@ -48,7 +48,7 @@ Polinomio Polinomio::operator+( const Polinomio &a ){
     for(it = a._terminoL.begin(); it != a._terminoL.end(); ++it){
         c.nuevoTermino( it->coef, it->exp );
     }
-    simplificar();
+    c.simplificar();
     return c;
   }
   /// @brief 
@@ -160,9 +160,16 @@ bool Polinomio::simplificar(){
         it2 = it1; 
         ++it2;
         while( it2 != _terminoL.end()  ){
+            //cout << &(*it1) << " y " << &(*it2) << endl;
             if( it1->exp == it2->exp && it1 != it2 ){
+                cout << "Sumando " << it1->coef << " y " << it2->coef << endl;
                 it1->coef += it2->coef;
                 _terminoL.erase( it2 );
+                if(it1->coef == 0){
+                    _terminoL.erase( it1 );
+                    it1 = _terminoL.begin();
+                }
+                it2 = it1;
             }
             ++it2;
         }
