@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
              << salarioTotal << endl;
     }
 
-    // Encontrar y reportar el empleado con mayor número de horas extras
+    //
     Empleado* maxHorasExtras = &_trabajadores[0];
     double maxHoras = _trabajadores[0].calcularSalario() - _trabajadores[0].getSalarioMensual();
     for (size_t i = 1; i < _trabajadores.size(); ++i) {

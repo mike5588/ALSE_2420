@@ -27,11 +27,11 @@ double Empleado::calcularSalario() const {
     for (const auto& horas : _horasxDia) {
         totalHorasExtras += horas.second;
     }
-    double pagoHorasExtras = totalHorasExtras * (_salarioMensual / 240); // Asumiendo 240 horas laborales al mes
+    double pagoHorasExtras = totalHorasExtras * (_salarioMensual / 240); //  240 horas laborales al mes
     return _salarioMensual + pagoHorasExtras;
 }
 
-// Getters
+
 std::string Empleado::getNombre() const {
     return _nombre;
 }
