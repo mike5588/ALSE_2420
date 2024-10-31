@@ -5,18 +5,27 @@
 #include <vector>
 
 typedef std::pair<int, float> HorasExtras; // (día, horas)
-class Empleado {
-    std::string _nombre;
-    
 
-    std::vector<HorasExtras> _horasExDia;
+class Empleado {
+private:
+    std::string _nombre;
+    std::string _apellido;
+    unsigned int _cedula;
+    double _salarioMensual;
+    std::vector<HorasExtras> _horasxDia; 
 
 public:
     Empleado(const std::string& nombre, const std::string& apellido, 
-        const unsigned int& cedula, double salarioMensual);
+             const unsigned int& cedula, double salarioMensual);
 
-    void agregarHorasExtras(int dia, float horas) ;
-
+    void agregarHorasExtras(int dia, float horas);
+    std::vector<HorasExtras> getHorasExtras() const;
+    double calcularSalario() const;
+    std::string getNombre() const;
+    std::string getApellido() const;
+    unsigned int getCedula() const;
+    double getSalarioMensual() const;
 };
 
 #endif // EMPLEADO_H
+

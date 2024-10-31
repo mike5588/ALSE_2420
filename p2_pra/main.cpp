@@ -27,7 +27,7 @@ void cargarArchivo( char* file, vector<Empleado> &trabajadores ){
       ss >> nombre >> apellido >> cedula >> salario;
       Empleado e( nombre, apellido, cedula, salario );
       while( ss >> dia >> horas ){
-        e.agregarHorasExtras( dia, horas );
+        e.HorasExtras( dia, horas );
       }
       trabajadores.push_back( e );
     }
@@ -41,15 +41,18 @@ int main(int argc, char**argv){
   
   cargarArchivo( argv[1], _trabajadores );//carga bien
   size_t tam = _trabajadores.size();
-  cout << "Número de trabajadores: " << tam << endl;
-// Calcula el valor a pagar por horas extras de cada trabajador 
-// y mostrar el valor mensual y el valor de las horas extras en un 
-// arreglo tabular
-// Empleado (Nmbre y apellido) | Salario mensual | Horas extras | Total a pagar
-
+ cout << "Empleado (Nombre y apellido) | Salario mensual | Horas extras | Total a pagar" << endl;
+    for (size_t i = 0; i < _trabajadores.size(); ++i) {
+        double salarioTotal = _trabajadores[i].calcularSalario();
+        cout << _trabajadores[i].getNombre() << " " << _trabajadores[i].getApellido() << " | "
+             << _trabajadores[i].getSalarioMensual() << " | "
+             << salarioTotal - _trabajadores[i].getSalarioMensual() << " | "
+             << salarioTotal << endl;
+    }
 
 /* Encontrar y reportar el empleado con mayor número de horas extras
 */
+ // Encontrar y reportar el empleado con mayor número de horas extras
 
 
 /* Encontrar y reportar el empleado con menor número de horas extras
