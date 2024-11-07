@@ -38,7 +38,9 @@ int main(int argc, char** argv)
             do{
               getline(archivo, path);
               _dato = atof( path.c_str() ) ;
+              cout << "El dato es: " <<_dato << endl;
               media = filtro.promedio();
+              //cout << media << endl;
               filtro.agregarDato( _dato );
               _dato -= media;
               archSal << _dato << endl;

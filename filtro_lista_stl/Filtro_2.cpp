@@ -2,8 +2,7 @@
  * Project Untitled
  */
 
-
-#include "Filtro.h"
+#include "Filtro_2.h"
 #include <list>
 #include <iostream>
 
@@ -27,17 +26,19 @@ void Filtro::agregarDato(float a) {
  */
 float Filtro::aplicar_filtro( float x_n ){
     float prom =0.;
-    if( _datos.empty() ) return 0.;
+    if( _datos.size() == 0 ) return 0.;
 
-    _datos.pob_front();
+    _datos.pop_front();
     _datos.push_back( x_n );
 
     int pos;
+    list<float>::iterator it = _datos.begin();
     for( pos = 0; pos < _tamano -1; pos++){
-        prom += _coeficientes[ pos ] * _datos[ _tamano - pos ];
+        prom += _coeficientes[ pos ] * (*it);
+        ++it;
     }
 
-    prom += _coefientes[_tamano] * _ult_sal;
+    prom += _coeficientes[_tamano] * _ult_sal;
 
     _ult_sal = prom;
 
@@ -55,13 +56,5 @@ Filtro::Filtro(int tamano, float coef[] ){
 
 
 }
-    int  getTamano(){ return _tamano;}
 
-/*
-    int _tamano;
-    std::list<float> _datos;
-    std::vector<float> _coeficientes;
 
-*/
-
-#endif //_FILTRO_H
