@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "Filtro.h"
+#include "Filtro_2.h"
 
 using namespace std;
 #define N 9
@@ -33,12 +33,13 @@ int main(int argc, char** argv)
         cout << "los datos de salida irán al archivo: output.txt";
         if( archSal.is_open() ){
             cout << " ...... ...... archivo abierto" << endl;
-            Filtro filtro(N);
+            float _coef[N] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            Filtro filtro(N, _coef);
             float media, _dato;
             do{
               getline(archivo, path);
               _dato = atof( path.c_str() ) ;
-              media = filtro.promedio();
+              media = filtro.aplicar_filtro(_dato);
               filtro.agregarDato( _dato );
               _dato -= media;
               archSal << _dato << endl;
